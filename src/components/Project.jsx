@@ -7,15 +7,17 @@ const Project = ({
   subDescription,
   href,
   image,
+  images,
   tags,
   setPreview,
 }) => {
   const [isHidden, setIsHidden] = useState(false);
+  const previewImage = images && images.length > 0 ? images[0] : image;
   return (
     <>
       <div
         className="flex flex-col sm:flex-row items-start sm:items-center justify-between py-6 sm:py-10 space-y-4 sm:space-y-0"
-        onMouseEnter={() => setPreview(image)}
+        onMouseEnter={() => setPreview(previewImage)}
         onMouseLeave={() => setPreview(null)}
       >
         <div className="w-full sm:w-auto">
@@ -41,6 +43,7 @@ const Project = ({
           description={description}
           subDescription={subDescription}
           image={image}
+          images={images}
           tags={tags}
           href={href}
           closeModal={() => setIsHidden(false)}

@@ -1,7 +1,7 @@
 "use client";
 
 import createGlobe from "cobe";
-import { useMotionValue, useSpring } from "motion/react";
+import { useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useRef } from "react";
 
 import { twMerge } from "tailwind-merge";

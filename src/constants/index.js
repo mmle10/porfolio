@@ -1,6 +1,61 @@
 export const myProjects = [
   {
     id: 1,
+    title: "AutoAgenda.net",
+    description:
+      "Developed AutoAgenda.net, a full-stack platform connecting car owners with auto repair shops. It combines appointment booking, a vehicle parts marketplace, and management tools for mechanics and administrators. Built with Next.js, NestJS, MongoDB, and Tailwind CSS, featuring JWT auth, role control, and Docker for scalable, secure performance.",
+    subDescription: [
+      "Full-Stack Developer (ReactJS, Next.js, NestJS, MongoDB, TypeScript, websocket, mapbox, capacitor)"
+    ],
+    href: "https://autoagenda.net/",
+    logo: "",
+    image: "/assets/projects/autoagenda_1.png",
+    images: [
+      "/assets/projects/autoagenda_1.png",
+      "/assets/projects/autoagenda_2.png",
+      "/assets/projects/autoagenda_3.png",
+      "/assets/projects/autoagenda_4.png",
+    ],
+    tags: [
+      {
+        id: 1,
+        name: "Next.js",
+        path: "/assets/logos/next.png",
+      },
+      {
+        id: 2,
+        name: "React",
+        path: "/assets/logos/react.svg",
+      },
+      {
+        id: 3,
+        name: "NestJS",
+        path: "/assets/logos/node.svg",
+      },
+      {
+        id: 4,
+        name: "MongoDB",
+        path: "/assets/logos/mongo.svg",
+      },
+      {
+        id: 5,
+        name: "TypeScript",
+        path: "/assets/logos/typescript.png",
+      },
+      {
+        id: 6,
+        name: "TailwindCSS",
+        path: "/assets/logos/tailwindcss.svg",
+      },
+      {
+        id: 7,
+        name: "Nest.js",
+        path: "/assets/logos/nestjs.svg",
+      },
+    ],
+  },
+  {
+    id: 2,
     title: "Vacloud - Cloud Storage",
     description:
          "A modern cloud storage application built with Next.js 14 and Appwrite, featuring real-time file management, user authentication, and advanced caching mechanisms. The application provides a seamless experience for users to upload, manage, and organize their files with features like file categorization.",
@@ -38,6 +93,7 @@ export const myProjects = [
       },
     ],
   },
+ 
   
 ];
 
@@ -63,50 +119,70 @@ export const experiences = [
  {
   title: "Software Developer",
   job: "Grupo Read",
-  date: "2024–Present",
+  date: "06/2024-11/2025",
   contents: [
-    "Developing and maintaining full-stack web applications using React.js, TypeScript, and Node.js.",
-    "Designing and building responsive, accessible user interfaces focused on performance and usability.",
-    "Implementing RESTful APIs, database interactions, and backend logic to support business requirements.",
-    "Collaborating across teams to ensure smooth integration between frontend, backend, and infrastructure components.",
-    "Writing clean, maintainable, and efficient code in line with modern development standards and best practices.",
+    "Develop and maintain full-stack web applications by writing clean, efficient, and scalable code.",
+    "Build responsive, user-friendly interfaces focused on performance and usability.",
+    "Develop robust backend services and create well-structured RESTful APIs to ensure seamless, high-performance communication between client and server.",
   ],
 },
   {
     title: "Software Developer",
     job: "Codika, SRL",
-    date: "2021-2023",
+    date: "01/2021-12/2022",
     contents: [
-      "Built and designed web applications using React.js, JavaScript, and TypeScript.",
-      "Worked closely with back-end developers to integrate APIs and ensure full-stack functionality.",
-      "Coordinated with QA testers to identify key areas for UI/UX improvement.",
-      "Maintained and improved existing applications, focusing on scalability and user experience.",
+      "Building and design web applications.",
+      "Collaborating with the back-end team to integrate RESTful APIs.",
+      "Coordinating testers to get insights on key areas of improvement.",
     ],
   },
- {
-  title: "Freelance Developer",
-  job: "Self-Employed",
-  date: "2023–Present",
-  contents: [
-    "Developed a variety of web applications for clients across different industries, focusing on clean code, responsive design, and performance.",
-    "Delivered full-stack solutions using React.js, TypeScript, Node.js, and modern development tools like Vite and Appwrite.",
-    "Built dynamic and interactive UIs, integrating third-party APIs, authentication systems, and real-time features.",
-    "Managed deployments using platforms such as Vercel and Netlify, implementing CI/CD workflows and scalable hosting.",
-    "Continually expanding knowledge in modern frameworks, state management, testing, and deployment best practices.",
-  ],
-},
   {
     title: "Professional Technician",
-    job: "Claro Dominicana",
-    date: "2016-2020",
+    job: "Claro Dominicana Telecommunications Company",
+    date: "01/2016-12/2020",
     contents: [
-      "Configured ADSL, IPTV, DTH, and VOIP services for residential and business clients.",
-      "Programmed voice services and performed advanced configuration of R1B1 & optional services.",
-      "Provided technical support and on-site service visits to resolve customer issues.",
+      "Configuring R1B1 & optional services, voice programming and saved visit.",
+      "Configuring ADSL, IPTV, DTH, VOIP.",
     ],
   },
  
 ];
+
+export const languages = [
+  {
+    name: "English",
+    level: "Fluent",
+  },
+];
+
+export const skills = [
+  "React.js",
+  "Javascript",
+  "Typescript",
+  "Node.js",
+  "Nest.js",
+  "Next.js",
+  "MongoDB",
+  "Docker",
+  "Rest Api",
+  "CSS",
+  "HTML",
+  "Git",
+  "GitLab",
+  "GitKraken",
+  "Redux",
+  "Tanstack query",
+  "Azure Devops",
+  "User experience UX",
+  "Blender",
+  "Fortinet",
+  "VMWare",
+  "Voip",
+  "Adsl",
+  "Iptv",
+  "Windows server",
+];
+
 export const reviews = [
   {
     name: "John Smith",

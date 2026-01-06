@@ -12,6 +12,7 @@ const Navbar = ({ setShowParallaxPlanets }) => {
   };
 
   const handleBackgroundChange = (e) => {
+    console.log("handleBackgroundChange", e);
     const value = e.target.value;
     setBackground(value);
     setShowParallaxPlanets(value === "planets");
@@ -43,7 +44,7 @@ const Navbar = ({ setShowParallaxPlanets }) => {
 
           {/* Background Selector */}
           <div className="flex items-center gap-4">
-            <select
+            {/* <select
               value={background}
               onChange={handleBackgroundChange}
               className="bg-black/40 text-white border border-white/20 rounded-md px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-white/40"
@@ -51,7 +52,7 @@ const Navbar = ({ setShowParallaxPlanets }) => {
               <option value="planets">Planets</option>
               <option value="mountains">Mountains</option>
               <option value="forest">Forest</option>
-            </select>
+            </select> */}
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-4">

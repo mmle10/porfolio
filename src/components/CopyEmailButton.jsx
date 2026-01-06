@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion } from "framer-motion";
 const CopyEmailButton = () => {
   const [copied, setCopied] = useState(false);
   const email = "luismelo0310@gmail.com";

@@ -3,6 +3,7 @@ import Card from "../components/Card";
 import { Globe } from "../components/Globe";
 import { Frameworks } from "../components/Frameworks";
 import CopyEmailButton from "../components/CopyEmailButton";
+import { languages } from "../constants";
 
 const About = () => {
   const grid2Container = useRef();
@@ -20,8 +21,7 @@ const About = () => {
           <div className="z-10">
             <p className="headtext">Hi, I'm Luis Melo</p>
             <p className="subtext">
-              Over the last 4 years, I developed my frontend and backend dev
-              skills to deliver dynamic and software and web applications.
+              I'm a Full-Stack Developer with 4+ years of experience building scalable, high-performance web applications using Next.js, NestJS, React.js, Node.js, and TypeScript. I help businesses develop clean, maintainable, and secure solutions. My focus is on creating seamless user experiences backed by robust APIs and efficient code.
             </p>
           </div>
           <div className="absolute inset-x-0 pointer-evets-none -bottom-4 h-1/2 sm:h-1/3 bg-gradient-to-t from-indigo" />
@@ -89,6 +89,16 @@ const About = () => {
             <p className="subtext">
               I'm based in Dominican Republic, and open to remote work worldwide
             </p>
+            {languages.length > 0 && (
+              <div className="mt-4">
+                <p className="text-sm font-semibold text-neutral-400">Languages:</p>
+                {languages.map((lang, idx) => (
+                  <p key={idx} className="text-sm text-neutral-500">
+                    {lang.name} - {lang.level}
+                  </p>
+                ))}
+              </div>
+            )}
           </div>
           <figure className="absolute left-[30%] top-[10%]">
             <Globe />

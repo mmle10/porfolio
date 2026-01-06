@@ -72,7 +72,7 @@ const CustomSelect = ({ onChange, defaultValue }) => {
       <Select
         options={options}
         onChange={(option) => onChange(option.value)}
-        defaultValue={defaultValue || options[0]}
+        defaultValue={defaultValue}
         styles={customStyles}
         isSearchable={false}
         className="text-white"

@@ -1,4 +1,4 @@
-import { useScroll, useSpring, useTransform } from "motion/react";
+import { useScroll, useSpring, useTransform } from "framer-motion";
 import ParticlesHero from "./particlesHero";
 import React from "react";
 import { motion } from "framer-motion";

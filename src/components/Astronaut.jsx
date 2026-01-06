@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
-import { useMotionValue, useSpring } from "motion/react";
+import { useMotionValue, useSpring } from "framer-motion";
 import { useFrame } from "@react-three/fiber";
 
 export function Astronaut(props) {
