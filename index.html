@@ -1,13 +1,52 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="is-booting">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <meta name="color-scheme" content="dark" />
+    <title>Hire a Full-Stack Software Engineer | Luis Melo</title>
+    <meta
+      name="description"
+      content="Luis Melo is a Full-Stack Software Engineer in Santo Domingo. Available for freelance and contract work with Next.js, NestJS, React, and TypeScript."
+    />
+    <style>
+      html,
+      body {
+        background: #030412;
+        margin: 0;
+      }
+      html.is-booting body {
+        overflow: hidden;
+      }
+      #boot {
+        position: fixed;
+        inset: 0;
+        z-index: 400;
+        display: grid;
+        place-items: center;
+        background: #030412;
+        pointer-events: none;
+      }
+      #boot i {
+        width: 92px;
+        height: 92px;
+        border-radius: 50%;
+        background: radial-gradient(circle at 32% 28%, #d4c8ff, #6a3fd6 38%, #1f1e39 78%);
+        box-shadow: 0 0 70px -8px rgba(106, 63, 214, 0.9);
+      }
+    </style>
   </head>
   <body>
+    <div id="boot" aria-hidden="true"><i></i></div>
     <div id="root"></div>
+    <script>
+      window.setTimeout(function () {
+        if (!document.documentElement.classList.contains("is-ready")) {
+          document.documentElement.classList.remove("is-booting");
+        }
+      }, 8000);
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

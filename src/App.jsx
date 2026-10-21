@@ -2,38 +2,41 @@ import "./index.css";
 import About from "./sections/About";
 import Contact from "./sections/Contact";
 import Experiences from "./sections/Experiences";
+import FAQ from "./sections/FAQ";
 import Footer from "./sections/Footer";
 import Hero from "./sections/Hero";
+import HireBot from "./components/HireBot";
+import PageLoader from "./components/PageLoader";
+import ShootingStars from "./components/ShootingStars";
+import StarTrail from "./components/StarTrail";
 import Navbar from "./sections/Navbar";
+import PlanetToolkit from "./components/PlanetToolkit";
 import Projects from "./sections/Projects";
-import Testimonial from "./sections/Testimonials";
-import {useState } from "react";
+import Services from "./sections/Services";
 
 function App() {
-  const [currentBackground, setCurrentBackground] = useState("planets");
-
-  const handleBackgroundChange = (value) => {
-    setCurrentBackground(value);
-  };
-
- 
   return (
     <>
-      <Navbar
-        onBackgroundChange={handleBackgroundChange}
-        currentBackground={currentBackground}
-      />
-      <Hero currentBackground={currentBackground} />
-       
-      <div className="container mx-auto max-w-8xl">
-
+      <Navbar />
+      <div className="relative z-[2]">
+        <Hero currentBackground="cinematic" />
         <About />
-        <Projects />
-        <Experiences />
-        <Testimonial />
-        <Contact />
-        <Footer />
+        <PlanetToolkit />
       </div>
+      <Services />
+      <div className="container mx-auto max-w-8xl">
+        <Projects showOrbit />
+        <div className="relative z-[2]">
+          <Experiences />
+          <FAQ />
+          <Contact />
+          <Footer />
+        </div>
+      </div>
+      <ShootingStars />
+      <StarTrail />
+      <HireBot />
+      <PageLoader />
     </>
   );
 }

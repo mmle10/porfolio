@@ -1,135 +1,193 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import CustomSelect from "../components/CustomSelect";
+import { scrollToSection } from "../utils/scrollToSection";
 
-function Navigation({ onBackgroundChange, currentBackground, setIsOpen }) {
-  const handleLinkClick = (e, sectionId) => {
-    e.preventDefault();
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const navbarHeight = 80; // Adjust based on your navbar height
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - navbarHeight;
+const links = [
+  ["home", "Home"],
+  ["about", "About"],
+  ["services", "Services"],
+  ["projects", "Work"],
+  ["contact", "Contact"],
+];
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
-    }
+function Navigation({ setIsOpen, compact }) {
+  const handleLinkClick = (sectionId) => {
+    scrollToSection(sectionId);
     setIsOpen(false);
   };
 
   return (
-    <ul className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
-      <li>
-        <button 
-          className="nav-link" 
-          onClick={(e) => handleLinkClick(e, "home")}
-        >
-          Home
-        </button>
-      </li>
-      <li>
-        <button 
-          className="nav-link" 
-          onClick={(e) => handleLinkClick(e, "about")}
-        >
-          About
-        </button>
-      </li>
-      <li>
-        <button 
-          className="nav-link" 
-          onClick={(e) => handleLinkClick(e, "projects")}
-        >
-          Projects
-        </button>
-      </li>
-      <li>
-        <button 
-          className="nav-link" 
-          onClick={(e) => handleLinkClick(e, "experiences")}
-        >
-          Experiences
-        </button>
-      </li>
-    
-      <li>
-        <button 
-          className="nav-link" 
-          onClick={(e) => handleLinkClick(e, "contact")}
-        >
-          Contact
-        </button>
-      </li>
-      <li>
-        <CustomSelect 
-          onChange={onBackgroundChange}
-          defaultValue={{ value: currentBackground, label: currentBackground.charAt(0).toUpperCase() + currentBackground.slice(1) }}
-        />
-      </li>
+    <ul
+      className={
+        compact
+          ? "flex items-center gap-6 px-6 py-[10px] text-sm rounded-full bg-white/8 border border-white/10 backdrop-blur-xl"
+          : "flex flex-col items-center gap-5"
+      }
+    >
+      {links.map(([id, label]) => (
+        <li key={id}>
+          <button
+            className="text-white/70 hover:text-white transition-colors"
+            onClick={() => handleLinkClick(id)}
+          >
+            {label}
+          </button>
+        </li>
+      ))}
     </ul>
   );
 }
 
-const Navbar = ({ onBackgroundChange, currentBackground }) => {
+const THEMES = {
+  aqua: "Aqua",
+  violet: "Violet",
+  rose: "Rose",
+};
+
+const Navbar = () => {
+  const [theme, setTheme] = useState(() => {
+    try {
+      const saved = window.localStorage.getItem("lm-theme-v2");
+      return THEMES[saved] ? saved : "aqua";
+    } catch {
+      return "aqua";
+    }
+  });
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    try {
+      window.localStorage.setItem("lm-theme-v2", theme);
+    } catch {
+      /* storage unavailable */
+    }
+  }, [theme]);
+
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [away, setAway] = useState(false);
+  const progressRef = useRef(null);
+
+  useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let last = window.scrollY;
+    let ticking = false;
+
+    const update = () => {
+      ticking = false;
+      const y = Math.max(0, window.scrollY);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = max > 0 ? Math.min(1, y / max) : 0;
+      if (progressRef.current) {
+        progressRef.current.style.transform = `scaleX(${progress})`;
+      }
+      setScrolled(y > 24);
+      if (isOpen || reduce || y < 80 || y <= last) {
+        setAway(false);
+      } else {
+        setAway(true);
+      }
+      last = y;
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    update();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [isOpen]);
+
   return (
-    <div className="fixed inset-x-0 top-0 z-60 w-full backdrop-blur-lg bg-primary/30">
-      <div className="mx-auto c-space max-w-7xl">
-        <div className="flex items-center justify-between py-4">
+    <>
+    <div className="site-progress" aria-hidden="true">
+      <i ref={progressRef} />
+    </div>
+    <div
+      className={`site-top${scrolled ? " is-scrolled" : ""}${away ? " is-away" : ""}`}
+    >
+      <div className="site-top-in flex items-center justify-between px-5 py-4 mx-auto max-w-7xl md:px-8">
+        <button
+          onClick={() => scrollToSection("home")}
+          className="flex items-center gap-3 text-left cursor-pointer"
+        >
+          <span className="btn-accent flex items-center justify-center flex-none w-10 h-10 rounded-full text-[13px] font-bold tracking-wide text-white ring-1 ring-white/25">
+            LM
+          </span>
+          <span className="flex flex-col leading-tight">
+            <span className="text-sm font-semibold tracking-wide text-white">
+              Luis Melo
+            </span>
+            <span className="text-[10px] font-medium tracking-[0.22em] uppercase text-white/50">
+              Full-Stack Engineer
+            </span>
+          </span>
+        </button>
+        <nav className="hidden lg:block">
+          <Navigation setIsOpen={setIsOpen} compact />
+        </nav>
+        <div className="flex items-center gap-3">
+          <div className="hidden md:block">
+            <CustomSelect
+              onChange={setTheme}
+              value={{ value: theme, label: THEMES[theme] }}
+            />
+          </div>
           <button
-            onClick={(e) => {
-              e.preventDefault();
-              const element = document.getElementById("home");
-              if (element) {
-                const navbarHeight = 80;
-                const elementPosition = element.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.scrollY - navbarHeight;
-                window.scrollTo({
-                  top: offsetPosition,
-                  behavior: "smooth"
-                });
-              }
-            }}
-            className="text-xl font-bold transition-colors text-neutral-400 hover:text-white">
-            Mmle
+            className="hidden px-4 py-2 text-sm font-medium text-black bg-white rounded-full hover-animation lg:inline-flex"
+            onClick={() => scrollToSection("contact")}
+          >
+            Hire Me
           </button>
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="flex cursor-pointer text-neutral-400 hover:text-white focus:outline-none sm:hidden">
+            className="flex cursor-pointer text-white/80 hover:text-white focus:outline-none lg:hidden"
+          >
             <img
               src={isOpen ? "assets/close.svg" : "assets/menu.svg"}
               className="w-6 h-6"
               alt="toggle"
             />
           </button>
-          <nav className="hidden sm:block">
-            <Navigation 
-              onBackgroundChange={onBackgroundChange} 
-              currentBackground={currentBackground}
-              setIsOpen={setIsOpen}
-            />
-          </nav>
         </div>
+      </div>
       {isOpen && (
         <motion.div
-          className="block sm:hidden"
+          className="px-5 pb-5 lg:hidden"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.2 }}>
-          <nav className="py-4 border-t border-royal/10">
-            <Navigation 
-              onBackgroundChange={onBackgroundChange} 
-              currentBackground={currentBackground}
-              setIsOpen={setIsOpen}
-            />
+          transition={{ duration: 0.2 }}
+        >
+          <nav className="p-5 border rounded-2xl border-white/10 bg-primary/90 backdrop-blur-xl">
+            <Navigation setIsOpen={setIsOpen} />
+            <button
+              className="w-full px-4 py-2 mt-5 text-sm font-medium text-black bg-white rounded-full"
+              onClick={() => {
+                scrollToSection("contact");
+                setIsOpen(false);
+              }}
+            >
+              Hire Me
+            </button>
+            <div className="mt-4 md:hidden">
+              <CustomSelect
+                onChange={setTheme}
+                value={{ value: theme, label: THEMES[theme] }}
+              />
+            </div>
           </nav>
         </motion.div>
       )}
-      </div>
     </div>
+    </>
   );
 };
 

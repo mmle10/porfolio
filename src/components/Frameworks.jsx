@@ -12,9 +12,9 @@ export function Frameworks() {
     { name: "html5", ext: "svg" },
     { name: "css3", ext: "svg" },
     { name: "tailwindcss", ext: "svg" },
+    { name: "nestjs", ext: "svg" },
     { name: "vitejs", ext: "svg" },
-    { name: "microsoftsqlserver", ext: "svg" },
-    { name: "sqlite", ext: "svg" },
+    { name: "github", ext: "svg" },
   ];
   return (
     <div className="relative flex h-[15rem] w-full flex-col items-center justify-center">

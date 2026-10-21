@@ -1,132 +1,175 @@
-import { useRef } from "react";
-import Card from "../components/Card";
-import { Globe } from "../components/Globe";
-import { Frameworks } from "../components/Frameworks";
-import CopyEmailButton from "../components/CopyEmailButton";
-import { languages } from "../constants";
+import { useEffect, useRef, useState } from "react";
+import BtnArrow from "../components/BtnArrow";
+import { stats } from "../constants";
+import { scrollToSection } from "../utils/scrollToSection";
+
+const splitStat = (value) => {
+  const match = String(value).match(/^(\d+)(.*)$/);
+  if (!match) return { num: null, suffix: value };
+  return { num: Number(match[1]), suffix: match[2] };
+};
+
+const roles = [
+  {
+    title: "Founder & Full-Stack Developer",
+    job: "Codium",
+    date: "03/2026 — Present",
+  },
+  {
+    title: "Software Developer",
+    job: "Grupo Read",
+    date: "06/2024 — 11/2025",
+  },
+  {
+    title: "Software Developer",
+    job: "Codika, SRL",
+    date: "01/2021 — 06/2023",
+  },
+];
 
 const About = () => {
-  const grid2Container = useRef();
-  return (
-    <section className="c-space section-spacing" id="about">
-      <h2 className="text-heading">About Me</h2>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-6 md:auto-rows-[15rem] mt-12">
-        {/* Grid 1 */}
-        <div className="flex items-end grid-default-color grid-1">
-          <img
-            alt="coding pov"
-            src="assets/coding-pov.png"
-            className="absolute scale-[1.75] -right-[5rem] -top-[1rem] md:scale-[3] md:left-50 md:inset-y-10 lg:scale-[2.5]"
-          />
-          <div className="z-10">
-            <p className="headtext">Hi, I'm Luis Melo</p>
-            <p className="subtext">
-              I'm a Full-Stack Developer with 4+ years of experience building scalable, high-performance web applications using Next.js, NestJS, React.js, Node.js, and TypeScript. I help businesses develop clean, maintainable, and secure solutions. My focus is on creating seamless user experiences backed by robust APIs and efficient code.
-            </p>
-          </div>
-          <div className="absolute inset-x-0 pointer-evets-none -bottom-4 h-1/2 sm:h-1/3 bg-gradient-to-t from-indigo" />
-        </div>
-        {/* Grid 2 */}
-        <div className="grid-default-color grid-2">
-          <div
-            ref={grid2Container}
-            className="flex items-center justify-center w-full h-full">
-            <p className="flex items-end text-5xl text-gray-500 select-none">
-              CODE IS CRAFT
-            </p>
+  const statsRef = useRef(null);
+  const [statsIn, setStatsIn] = useState(false);
+  const [shown, setShown] = useState(stats.map((stat) => stat.value.replace(/^\d+/, "0")));
 
-            <Card
-              style={{ rotate: "30deg", top: "20%", left: "10%" }}
-              image="assets/logos/typescript.png"
-              containerRef={grid2Container}
-            />
-            <Card
-              style={{ rotate: "30deg", top: "40%", left: "90%" }}
-              image="assets/logos/node.svg"
-              containerRef={grid2Container}
-            />
-            <Card
-              style={{ rotate: "30deg", top: "20%", left: "30%" }}
-              image="assets/logos/react.svg"
-              containerRef={grid2Container}
-            />
-            <Card
-              style={{ rotate: "30deg", top: "20%", right: "30%" }}
-              image="assets/logos/git.svg"
-              containerRef={grid2Container}
-            />
-            <Card
-              style={{ rotate: "30deg", top: "80%", right: "10%" }}
-              image="assets/logos/mongo.svg"
-              containerRef={grid2Container}
-            />
-            <Card
-              style={{ rotate: "30deg", top: "70%", left: "50%" }}
-              image="assets/logos/three.png"
-              containerRef={grid2Container}
-            />
-            <Card
-              style={{ rotate: "30deg", top: "20%", left: "70%" }}
-              image="assets/logos/next.png"
-              containerRef={grid2Container}
-            />
-            <Card
-              style={{ rotate: "-45deg", top: "60%", left: "25%" }}
-              image="assets/logos/javascript.png"
-              containerRef={grid2Container}
-            />
-            <Card
-              style={{ rotate: "-30deg", top: "10%", left: "45%" }}
-              image="assets/logos/appwrite.svg"
-              containerRef={grid2Container}
-            />
-          </div>
+  useEffect(() => {
+    const node = statsRef.current;
+    if (!node) return undefined;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setStatsIn(true);
+      },
+      { threshold: 0.35 }
+    );
+    io.observe(node);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!statsIn) return undefined;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      setShown(stats.map((stat) => stat.value));
+      return undefined;
+    }
+
+    const parsed = stats.map((stat) => splitStat(stat.value));
+    const duration = 1400;
+    const start = performance.now();
+    let frame = 0;
+
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - (1 - t) ** 3;
+      setShown(
+        parsed.map((part) =>
+          part.num === null ? part.suffix : `${Math.round(part.num * eased)}${part.suffix}`
+        )
+      );
+      if (t < 1) frame = requestAnimationFrame(tick);
+    };
+
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [statsIn]);
+
+  return (
+    <section className="about-section c-space" id="about">
+      <div className="about-main">
+        <div className="about-copy">
+          <p className="about-kicker">About me</p>
+          <h2 className="about-title">
+            <span>Full-Stack</span>
+            <span>Software</span>
+            <span>Engineer</span>
+            <span>building</span>
+            <span>products</span>
+            <span>people</span>
+            <span className="about-title-accent">actually use.</span>
+          </h2>
         </div>
-        {/* Grid 3 */}
-        <div className="grid-black-color grid-3">
-          <div className="z-10 w-[50%]">
-            <p className="headtext">Time Zone</p>
-            <p className="subtext">
-              I'm based in Dominican Republic, and open to remote work worldwide
-            </p>
-            {languages.length > 0 && (
-              <div className="mt-4">
-                <p className="text-sm font-semibold text-neutral-400">Languages:</p>
-                {languages.map((lang, idx) => (
-                  <p key={idx} className="text-sm text-neutral-500">
-                    {lang.name} - {lang.level}
-                  </p>
-                ))}
+
+        <article className="about-card">
+          <p className="about-card-label">Who I am</p>
+
+          <div className="about-card-head">
+            <div className="about-card-identity">
+              <span className="about-avatar">
+                <img src="/assets/luis.jpg" alt="Luis Eduardo Melo" />
+              </span>
+              <div>
+                <p className="about-name">Luis Eduardo Melo ·</p>
+                <p className="about-place">Santo Domingo, Dominican Republic</p>
               </div>
-            )}
-          </div>
-          <figure className="absolute left-[30%] top-[10%]">
-            <Globe />
-          </figure>
-        </div>
-        {/* Grid 4 */}
-        <div className="grid-special-color grid-4">
-          <div className="flex flex-col items-center justify-center gap-4 size-full">
-            <p className="text-center headtext">
-              Do you want to start a project together?
-            </p>
-            <CopyEmailButton />
-          </div>
-        </div>
-        {/* Grid 5 */}
-        <div className="grid-default-color grid-5">
-          <div className="z-10 w-[50%]">
-            <p className="headText">Teck Stack</p>
-            <p className="subtext">
-              I specialize in a variety of languages, frameworks, and tools taht
-              allow me to build robust and scalable applications
+            </div>
+            <p className="about-available">
+              <span />
+              Open to work
             </p>
           </div>
-          <div className="absolute inset-y-0 md:inset-y-9 w-full h-full start-[50%] md:scale-125">
-            <Frameworks />
+
+          <p className="about-bio">
+            I&apos;m a Full-Stack Software Engineer experienced in team-based
+            development and building client applications from scratch. Founder
+            of Codium and creator of AutoAgenda, an automotive SaaS with
+            payments, real-time updates, and mobile apps.
+          </p>
+          <p className="about-bio">
+            From Codika to Grupo Read, and now Codium, I ship with TypeScript,
+            React, Next.js, Node.js, and NestJS from requirements to
+            deployment.
+          </p>
+
+          <ol className="about-roles">
+            {roles.map((role) => (
+              <li key={`${role.job}-${role.date}`}>
+                <span className="about-role-dot" />
+                <div className="about-role-copy">
+                  <div className="about-role-row">
+                    <p>{role.title}</p>
+                    <span>{role.date}</span>
+                  </div>
+                  <p>{role.job}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+
+          <div className="about-actions">
+            <button
+              type="button"
+              className="about-btn about-btn-solid"
+              onClick={() => scrollToSection("contact")}
+            >
+              ✦ Start a project
+            </button>
+            <button
+              type="button"
+              className="about-btn about-btn-ghost"
+              onClick={() => scrollToSection("projects")}
+            >
+              See past work
+              <i aria-hidden="true">
+                <BtnArrow />
+              </i>
+            </button>
           </div>
-        </div>
+        </article>
       </div>
+
+      <ul ref={statsRef} className={`about-stats${statsIn ? " in" : ""}`}>
+        {stats.map((stat, index) => (
+          <li key={stat.label} style={{ "--i": index }}>
+            <b>{shown[index]}</b>
+            <span>{stat.label}</span>
+            <i className="about-stat-arc" aria-hidden="true">
+              <svg viewBox="0 0 40 40">
+                <circle cx="20" cy="20" r="17" pathLength="1" />
+              </svg>
+            </i>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 };

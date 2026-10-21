@@ -1,0 +1,75 @@
+C O N T A C T
+luismelo93@hotmail.com
++1 829 605 6147
+Santo Domingo, Dominican
+Republic
+luis-eduardo-melo-marcial-8a21b6156
+S K I L L S
+Languages
+TypeScript JavaScript HTML
+CSS SQL
+Frontend
+React.js Next.js Tailwind CSS
+Redux TanStack Query
+Responsive UI/UX
+Backend
+Node.js NestJS RESTful APIs
+WebSockets Socket.IO
+Authentication Authorization
+Data & AI
+PostgreSQL MongoDB
+Supabase Appwrite
+LLM-powered features & AI integrations
+using model APIs
+Tools & Cloud
+Firebase Google OAuth Docker
+Vercel Render Azure DevOps
+Git GitLab GitKraken
+VS Code Postman Capacitor
+L A N G U A G E S
+Spanish
+Native
+English
+Fluent / Professional Working Proficiency
+Luis Eduardo Melo Marcial
+Full-Stack Software Engineer
+Full-Stack Software Engineer with 6+ years of experience building production
+web applications with TypeScript, JavaScript, React, Next.js, Node.js, and
+NestJS. Experienced in scalable architecture, APIs, authentication, integrations,
+performance, deployment, and production support.
+E XP E R I E N C E
+Grupo Read
+Software Developer
+06/2024 — 11/2025 Santo Domingo, Dominican Republic
+Developed full-stack web applications using JavaScript and TypeScript.
+Built responsive frontend features and reusable UI components.
+Developed backend services, RESTful APIs, and business logic.
+Implemented authentication, data management, and third-party
+integrations.
+Troubleshot production issues and collaborated with development and QA
+teams.
+Codika, SRL
+Software Developer
+01/2021 — 06/2023 Santo Domingo, Dominican Republic
+Developed web application features using modern frontend technologies.
+Integrated RESTful APIs and delivered end-to-end functionality.
+Built reusable UI components and responsive interfaces.
+Tested, troubleshot, and resolved application issues.
+Translated requirements into maintainable software solutions with
+cross-functional teams.
+E D U CAT I O N
+Systems Engineering 2012 — 2020
+Universidad Dominicana O&M
+Technical Bachelor in Accounting 2012 — 2020
+Gustavo Adolfo Bécquer
+P R OJ E C T S
+AutoAgenda Next.js, React, TypeScript, Node.js,
+NestJS, MongoDB, REST APIs,
+WebSockets, Socket.IO, Google OAuth,
+Firebase, maps, cloud media services,
+Docker, Vercel, Render, Capacitor
+Full-Stack SaaS Platform connecting vehicle owners with automotive repair shops
+and managing service workflows.
+
+-- 1 of 1 --
+

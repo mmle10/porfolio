@@ -1,0 +1,124 @@
+Luis Eduardo Melo · https://mmle-porfolio.vercel.app · 1 / 2
+Luis Eduardo Melo
+Full-Stack Software Engineer
+luismelo93@hotmail.com +1 829 605 6147 Santo Domingo, Dominican Republic mmle-porfolio.vercel.app
+luis-eduardo-melo-marcial-8a21b6156 github.com/mmle10/
+E D U C AT I O N
+Universidad Dominicana O&M
+Systems Engineering
+2012 — 2020
+Gustavo Adolfo Bécquer
+School Diploma in Accounting
+2002 — 2011
+L A N G U A G E S
+Spanish
+Native
+English
+Fluent / Professional Working Proficiency
+S K I L L S
+Languages
+TypeScript JavaScript HTML
+CSS SQL
+Frontend
+React.js Next.js Tailwind CSS
+Redux TanStack Query
+Responsive Design Three.js
+Backend
+Node.js NestJS
+Google OAuth
+Authentication & Authorization
+(RBAC)
+RESTful APIs WebSockets
+Socket.IO
+Databases & AI
+PostgreSQL MongoDB
+Supabase Appwrite
+LLM API Integrations
+Tools, Cloud & Practices
+Firebase Jira Agile Scrum
+CI/CD Docker Vercel
+Render Azure DevOps Git
+GitLab GitKraken VS Code
+Postman Capacitor
+Full-Stack Software Engineer experienced in team-based development and
+building client applications from scratch. Founder of Codium and creator of
+AutoAgenda, an automotive SaaS platform with payments, real-time updates, and
+mobile apps. Skilled in TypeScript, React, Next.js, Node.js, and NestJS, delivering
+solutions from requirements to deployment.
+EXPERIENCE
+Grupo Read
+Software Developer
+06/2024 — 11/2025 Santo Domingo, Dominican Republic
+Developed and maintained a healthcare appointment platform using
+React.js, Next.js, and TypeScript, with responsive interfaces and reusable
+components styled with Tailwind CSS.
+Implemented appointment scheduling, cancellations, multi-location
+availability, interactive maps, and automated notifications for patients and
+healthcare professionals.
+Built backend services and RESTful APIs using Node.js and MongoDB,
+implementing business logic, authentication, and role-based access
+control (RBAC).
+Troubleshot production issues and collaborated with development and QA
+teams on code reviews, deployments, and CI/CD workflows in an Agile
+Scrum environment.
+Tools: Docker, Git, GitKraken, Jira.
+Codika, SRL
+Software Developer
+01/2021 — 06/2023 Santo Domingo, Dominican Republic
+Developed web applications for automotive and security clients using
+React.js, JavaScript, TypeScript, Tailwind CSS, Node.js, and MongoDB.
+Built automotive booking features, including customer dashboards,
+appointment scheduling, vehicle management, role-based access, and
+service provider notifications.
+Developed security operations features for personnel assignments,
+location management, vehicle fleets, and role-based permissions.
+Integrated RESTful APIs and collaborated with cross-functional teams
+through code versioning, sprint planning, and daily stand-ups in an Agile
+Scrum environment.
+Tools: Git, Jira, Azure DevOps
+Codium
+Founder & Full-Stack Developer
+03/2026 — Present Santo Domingo, Dominican Republic
+Custom Software Development | www.codiumservices.com
+Built custom web applications from scratch for billing, hospitality, QR-based
+security, and jewelry retail.
+Developed frontend interfaces, backend services, databases, and API
+integrations.
+
+-- 1 of 2 --
+
+Luis Eduardo Melo · https://mmle-porfolio.vercel.app · 2 / 2
+AutoAgenda Integrations
+CardNET Lemon Squeezy
+Mapbox Cloudinary
+Firebase Cloud Messaging
+Project Type
+Personal SaaS Product
+Role
+Creator & Full-Stack Developer
+Platforms
+Web Android iOS
+Translated client requirements into complete software solutions.
+PROJECTS
+AutoAgenda Next.js, React, TypeScript, Node.js,
+NestJS, MongoDB, REST APIs,
+WebSockets, Socket.IO, Google OAuth,
+Firebase, maps, cloud media services,
+Docker, Vercel, Render, Capacitor
+• Designed and built a SaaS platform connecting vehicle owners with repair shops
+through interactive maps, appointment booking, service tracking, and spare parts
+purchases.
+• Developed a Next.js, React, and TypeScript frontend with NestJS/Node.js
+REST APIs and MongoDB, supporting role-based workflows for customers and
+workshop staff.
+• Integrated CardNET payments and Lemon Squeezy subscriptions, including
+payment workflows and webhooks.
+• Implemented real-time messaging and service updates with WebSockets and
+Socket.IO, plus mobile push notifications through Firebase Cloud Messaging.
+• Built Android and iOS applications with Capacitor; integrated Google OAuth
+and Cloudinary, used Docker for containerized development, and deployed across
+Vercel and Render.
+autoagenda.net
+
+-- 2 of 2 --
+

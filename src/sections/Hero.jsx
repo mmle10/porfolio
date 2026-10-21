@@ -1,5 +1,6 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import HeroText from "../components/HeroText";
+import HeroCinematic, { HeroOrbit } from "../components/HeroCinematic";
 import ParallaxBackground from "../components/ParallaxBackground";
 import { Astronaut } from "../components/Astronaut";
 import { Float } from "@react-three/drei";
@@ -43,25 +44,6 @@ const Hero = ({ currentBackground }) => {
           <>
             <ParallaxPlanets />
             <figure className="absolute inset-0 h-full w-full">
-              {/* Left scrollable overlay */}
-              <div
-                className="absolute top-0 left-0  "
-                style={{ width: "18vw", height: "100vh", zIndex: 50, pointerEvents: "auto" }}
-              />
-              {/* Right scrollable overlay */}
-              <div
-                className="absolute top-0 right-0 "
-                style={{ width: "18vw",height: "100vh", zIndex: 50, pointerEvents: "auto" }}
-              />
-              <div
-                className="absolute top-0 left-0 w-screen "
-                style={{ height: "18vh", zIndex: 50, pointerEvents: "auto" }}
-              />
-              {/* Bottom scrollable overlay */}
-              <div
-                className="absolute bottom-0 left-0 w-screen "
-                style={{ height: "18vh", zIndex: 50, pointerEvents: "auto" }}
-              />
               <Canvas
                 className="cursor-grab"
                 gl={{
@@ -70,7 +52,8 @@ const Hero = ({ currentBackground }) => {
                   outputColorSpace: THREE.SRGBColorSpace,
                   outputEncoding: THREE.sRGBEncoding,
                 }}
-                camera={{ position: [0, 0, 5], fov: 75 }}>
+                camera={{ position: [0, 0, 5], fov: 75 }}
+              >
                 <Suspense fallback={<Loader />}>
                   <SceneLighting />
                   <SceneControls />
@@ -81,32 +64,38 @@ const Hero = ({ currentBackground }) => {
                     floatIntensity={1}
                     rotation={[0, Math.PI / 100, 0]}
                     scale={isMobile ? 1 : 1.25}
-                    position={isMobile ? [0, -3, 0] : [-0.5, -3, 0]}>
+                    position={isMobile ? [0, -3, 0] : [-0.5, -3, 0]}
+                  >
                     <Austronant2 />
                   </Float>
-                  {/* <group
-                      scale={isMobile ? 0.001 : 0.006}
-                      // position={isMobile ? [1.2, -1.2, 0] : [1.2, 0, 0]}
-                      rotation={[1, 4 / 4, 3]}>
-                      <Austronant3 />
-                    </group> */}
-                  {/* <Rig /> */}
                 </Suspense>
               </Canvas>
             </figure>
           </>
         );
       default:
-        return <ParallaxPlanets />;
+        return <HeroCinematic />;
     }
   };
+
+  const isCinematic =
+    currentBackground !== "mountains" && currentBackground !== "planets";
 
   return (
     <section
       id="home"
-      className="flex items-start relative justify-center min-h-screen overflow-hidden md:items-start md:justify-start c-space">
-      <HeroText />
+      className="hero-stage relative flex flex-col items-stretch justify-end min-h-screen overflow-hidden"
+    >
       {renderBackground()}
+      {isCinematic && (
+        <div className="absolute right-0 top-[9%] z-10 w-full max-w-none pointer-events-none md:top-[8%] md:right-6 md:left-auto md:w-[50%] lg:right-14">
+          <div className="flex items-center justify-center w-full">
+            <div id="orbit-home" className="hero-orbit-scene" aria-hidden="true" />
+          </div>
+          <HeroOrbit />
+        </div>
+      )}
+      <HeroText />
     </section>
   );
 };

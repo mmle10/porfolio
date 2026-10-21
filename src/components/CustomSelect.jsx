@@ -1,58 +1,72 @@
 import Select from 'react-select';
 
 const customStyles = {
-  control: (base, state) => ({
+  control: (base) => ({
     ...base,
-    background: 'rgba(13, 17, 38, 0.05)',
-    borderColor: 'rgba(147, 112, 219, 0.15)',
-    borderWidth: '2px',
+    background: 'rgba(255, 255, 255, 0.08)',
+    backdropFilter: 'blur(20px)',
+    WebkitBackdropFilter: 'blur(20px)',
+    borderColor: 'rgba(255, 255, 255, 0.10)',
+    borderWidth: '1px',
     borderRadius: '9999px',
-    padding: '2px 8px',
+    minHeight: '40px',
+    padding: '0 4px 0 10px',
     boxShadow: 'none',
+    cursor: 'pointer',
     '&:hover': {
-      borderColor: 'rgba(147, 112, 219, 0.2)',
-      background: 'rgba(147, 112, 219, 0.1)',
+      borderColor: 'rgba(255, 255, 255, 0.22)',
+      background: 'rgba(255, 255, 255, 0.12)',
     },
     '&:focus-within': {
-      borderColor: 'rgba(147, 112, 219, 0.2)',
-      boxShadow: '0 0 0 2px rgba(147, 112, 219, 0.2)',
+      borderColor: 'rgba(255, 255, 255, 0.22)',
+      background: 'rgba(255, 255, 255, 0.12)',
+      boxShadow: 'none',
     },
   }),
   menu: (base) => ({
     ...base,
-    background: 'rgba(13, 17, 38, 0.95)',
-    backdropFilter: 'blur(8px)',
-    borderRadius: '12px',
-    border: '1px solid rgba(147, 112, 219, 0.1)',
-    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
+    marginTop: '8px',
+    background: 'rgba(16, 14, 28, 0.92)',
+    backdropFilter: 'blur(20px)',
+    WebkitBackdropFilter: 'blur(20px)',
+    borderRadius: '16px',
+    border: '1px solid rgba(255, 255, 255, 0.10)',
+    boxShadow: '0 24px 60px rgba(0, 0, 0, 0.45)',
     overflow: 'hidden',
-    padding: '8px',
+    padding: '6px',
+    zIndex: 70,
   }),
   option: (base, state) => ({
     ...base,
-    background: state.isSelected 
-      ? 'rgba(147, 112, 219, 0.2)' 
-      : state.isFocused 
-        ? 'rgba(147, 112, 219, 0.1)' 
+    background: state.isSelected
+      ? 'rgba(255, 255, 255, 0.10)'
+      : state.isFocused
+        ? 'rgba(255, 255, 255, 0.06)'
         : 'transparent',
     color: 'white',
-    padding: '8px',
+    fontSize: '14px',
+    padding: '8px 14px',
     cursor: 'pointer',
-    borderRadius: '8px',
-    margin: '4px 0',
+    borderRadius: '9999px',
+    margin: '2px 0',
     '&:hover': {
-      background: 'rgba(147, 112, 219, 0.15)',
+      background: 'rgba(255, 255, 255, 0.08)',
+    },
+    '&:active': {
+      background: 'rgba(255, 255, 255, 0.10)',
     },
   }),
   singleValue: (base) => ({
     ...base,
     color: 'white',
+    fontSize: '14px',
   }),
   dropdownIndicator: (base) => ({
     ...base,
-    color: 'white',
+    color: 'rgba(255, 255, 255, 0.6)',
+    padding: '4px',
     '&:hover': {
-      color: 'rgba(147, 112, 219, 0.8)',
+      color: 'white',
     },
   }),
   indicatorSeparator: (base) => ({
@@ -62,17 +76,19 @@ const customStyles = {
 };
 
 const options = [
-  { value: 'planets', label: 'Planets' },
-  { value: 'mountains', label: 'Mountains' },
+  { value: 'aqua', label: 'Aqua' },
+  { value: 'violet', label: 'Violet' },
+  { value: 'rose', label: 'Rose' },
 ];
 
-const CustomSelect = ({ onChange, defaultValue }) => {
+const CustomSelect = ({ onChange, value }) => {
   return (
     <div className=" flex items-center justify-center w-full">
       <Select
         options={options}
         onChange={(option) => onChange(option.value)}
-        defaultValue={defaultValue}
+        value={value}
+        aria-label="Theme"
         styles={customStyles}
         isSearchable={false}
         className="text-white"
@@ -81,4 +97,4 @@ const CustomSelect = ({ onChange, defaultValue }) => {
   );
 };
 
-export default CustomSelect; 
+export default CustomSelect;

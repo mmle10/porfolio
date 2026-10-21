@@ -32,7 +32,11 @@ const GLOBE_CONFIG = {
   ],
 };
 
-export function Globe({ className, config = GLOBE_CONFIG }) {
+export function Globe({
+  className,
+  canvasClassName = "size-[30rem]",
+  config = GLOBE_CONFIG,
+}) {
   let phi = 0;
   let width = 0;
   const canvasRef = useRef(null);
@@ -100,7 +104,8 @@ export function Globe({ className, config = GLOBE_CONFIG }) {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-500/40 to-transparent rounded-full blur-lg" />
       <canvas
         className={twMerge(
-          "size-[30rem] opacity-0 transition-opacity duration-500 [contain:layout_paint_size] rounded-full"
+          "opacity-0 transition-opacity duration-500 [contain:layout_paint_size] rounded-full",
+          canvasClassName
         )}
         ref={canvasRef}
         onPointerDown={(e) => {
