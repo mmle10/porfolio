@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import BtnArrow from "../components/BtnArrow";
+import VisitorCounter from "../components/VisitorCounter";
 import { stats } from "../constants";
 import { scrollToSection } from "../utils/scrollToSection";
 
@@ -170,6 +171,10 @@ const About = () => {
           </li>
         ))}
       </ul>
+
+      <p className="about-visits">
+        <VisitorCounter />
+      </p>
     </section>
   );
 };

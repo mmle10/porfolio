@@ -1017,6 +1017,22 @@ html[data-theme="violet"] .parallax-bg [data-layer] {
   font-size: 15px;
 }
 
+.about-visits {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: clamp(36px, 5vh, 56px) 0 0;
+  font: 400 12px "JetBrains Mono", ui-monospace, monospace;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(232, 228, 255, 0.5);
+}
+
+.about-visits svg {
+  flex: none;
+}
+
 .about-stat-arc {
   position: absolute;
   right: 16px;
